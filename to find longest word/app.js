@@ -1,7 +1,4 @@
-var sentence = document.querySelector("input")
-const button = document.querySelector("btn")
-
-
+let sentence = prompt('input your sentence here:')
 function long(sentence){
     let words = sentence.split(" ")
     console.log(sentence)

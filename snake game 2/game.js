@@ -32,7 +32,7 @@ window.onload = function(){
     foodPos();
     document.addEventListener("keyup", changeDir);
     //update();
-    setInterval(update, 1000/10);
+    setInterval(update, 100);
 }
 function update(){
     if(gameOver){

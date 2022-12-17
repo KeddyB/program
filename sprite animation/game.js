@@ -8,17 +8,24 @@ playerImage.src = 'sprite animations/shadow_dog.png'
 const spriteWidth = 575;
 const spriteHeight = 525;
 
-let frameX = 1;
-let frameY = 5;
+//this frame help to pick the pictures of the frames to display ensuring an animation
+let frameX = 0;
+let frameY = 0;
+
+//to slow the frames we create grame frame variable
+let gameFrame = 0;
+const staggerFrame = 5;
 
 function animate(){
     ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
-    //ctx.fillStyle = "red"
-    //ctx.fillRect( 45, 45, 100, 100);
-    ctx.drawImage(playerImage, frameX * spriteWidth, frameY * spriteHeight, spriteWidth, spriteHeight, 0, 0, spriteWidth, spriteHeight)
-    if(frameX < 6)frameX++;
-    else frameX = 0
+    let Position = Math.floor(gameFrame/staggerFrame) % 6;
+    frameX = spriteWidth * Position
+    ctx.drawImage(playerImage, frameX, frameY * spriteHeight, spriteWidth, spriteHeight, 0, 0, spriteWidth, spriteHeight)
+    //if (gameFrame % staggerFrame == 0){
+    //    if(frameX < 9)frameX++;
+    //    else frameX = 0
+    //}
+    gameFrame ++;
     requestAnimationFrame(animate)
 }
 animate()
-console.log(animate())

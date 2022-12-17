@@ -8,8 +8,8 @@ playerImage.src = 'sprite animations/shadow_dog.png'
 const spriteWidth = 575;
 const spriteHeight = 525;
 
-let frameX = 0;
-let frameY = 0;
+let frameX = 1;
+let frameY = 5;
 
 function animate(){
     ctx.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
@@ -21,3 +21,4 @@ function animate(){
     requestAnimationFrame(animate)
 }
 animate()
+console.log(animate())

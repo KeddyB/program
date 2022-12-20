@@ -1,3 +1,9 @@
+playerState = 'idle'
+const dropdown = document.getElementById('animations');
+dropdown.addEventListener('change', function(e){
+    playerState = e.target.value
+})
+
 const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d')
 const CANVAS_WIDTH = canvas.width = 600
@@ -8,11 +14,6 @@ playerImage.src = 'sprite animations/shadow_dog.png'
 const spriteWidth = 575;
 const spriteHeight = 525;
 
-playerState ='sit'
-
-//this frame help to pick the pictures of the frames to display ensuring an animation
-//let frameX = 0;
-//let frameY = 0;
 
 //to slow the frames we create grame frame variable
 let gameFrame = 0;

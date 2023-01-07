@@ -2,7 +2,7 @@ const canvas = document.getElementById('canvas');
 const ctx = canvas.getContext('2d')
 canvas.width = 320;
 canvas.height = 500;
-const explosion = []
+const explosions = []
 let canvasPosition = canvas.getBoundingClientRect();
 
 class Explosion {
@@ -21,20 +21,21 @@ class Explosion {
         this.frame++;
     }
     draw(){
-        ctx.drawImage(this.image, this.spriteWidth * this.frame, 0, this.spriteWidth, this,this.spriteHeight, this.x, this.y,this.width, this.heigth)
+        ctx.drawImage(this.image, this.spriteWidth * this.frame, 0, this.spriteWidth, this.spriteHeight, this.x, this.y,this.width, this.heigth)
     }
 }
 window.addEventListener('click', function(e){
     let positionX = e.x - canvasPosition.left;
     let positionY = e.y - canvasPosition.top;
-    explosion.push(new Explosion(positionX, positionY))
-})
+    explosions.push(new Explosion(positionX, positionY))
+});
+
 
 function animate(){
     ctx.clearRect(0, 0, canvas.width, canvas.height)
-    for(let i = 0; i < explosion.length; i ++){
-        explosion[i].update();
-        explosion[i].draw();
+    for(let i = 0; i < explosions.length; i++){
+        explosions[i].update();
+        explosions[i].draw();
     }
     requestAnimationFrame(animate)
 }

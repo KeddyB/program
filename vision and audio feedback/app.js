@@ -1,4 +1,4 @@
-const canvas = document.getElementById('canvas');
+const canvas = document.getElementById('canvas1');
 const ctx = canvas.getContext('2d')
 canvas.width = 360;
 canvas.height = 500;
@@ -14,15 +14,12 @@ class Explosion{
         this.width = this.spriteWidth/2
         this.height = this.spriteHeight/2;
         this.img = new Image()
-        this.img.src = 'boom.png';
+        this.img.src = "boom.png";
         this.frame = 0;
         this.timer = 0;
     }
     update(){
-        this.timer++
-        if(this.timer % 10 === 0){
-            this.frame++;
-        }
+        this.frame++
     }
     draw(){
         ctx.drawImage(this.img, this.spriteWidth * this.frame, 0, this.spriteWidth, this.spriteHeight, this.x, this.y,this.width, this.heigth)
@@ -39,10 +36,10 @@ window.addEventListener('click', function(e){
 
 function animate(){
     ctx.clearRect(0, 0, canvas.width, canvas.height)
-    for(let i = 0; i < explosions.length; i++){
-        explosions[i].update();
-        explosions[i].draw();
-    }
+    //for(let i = 0; i < explosions.length; i++){
+       // explosions[i].update();
+        //explosions[i].draw();
+    //}
     requestAnimationFrame(animate)
 }
 animate()

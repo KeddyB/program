@@ -2,7 +2,7 @@ const canvas = document.getElementById('canvas1');
 const ctx = canvas.getContext('2d')
 canvas.width = 360;
 canvas.height = 500;
-var explosions = []
+const explosions = []
 let canvasPosition = canvas.getBoundingClientRect();
 
 class Explosion{
@@ -13,8 +13,8 @@ class Explosion{
         this.spriteHeight = 179;
         this.width = this.spriteWidth/2
         this.height = this.spriteHeight/2;
-        this.img = new Image()
-        this.img.src = "boom.png";
+        this.image = new Image()
+        this.image.src = "boom.png";
         this.frame = 0;
         this.timer = 0;
     }
@@ -27,15 +27,18 @@ class Explosion{
 }
 
 window.addEventListener('click', function(e){
-    console.log(e)
     let positionX = e.x - canvasPosition.left;
     let positionY = e.y - canvasPosition.top;
     explosions.push(new Explosion(positionX, positionY))
 });
+
 function animate(){
-    for(let i = 0; i > explosions.length; i++){
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    for(let i = 0; i < explosions.length; i++){
         explosions[i].update();
         explosions[i].draw();
     }
-    requestAnimationFrame(animate)
+    requestAnimationFrame(animate);
+    console.log('go')
 }
+animate()

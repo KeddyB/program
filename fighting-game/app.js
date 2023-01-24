@@ -133,7 +133,7 @@ function animate(){
     player.update()
     enemy.update()
 
-    player.velocity.x = 0
+    player.velocity.x = 0a
     enemy.velocity.x = 0
 
     //player movement

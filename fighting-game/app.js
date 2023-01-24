@@ -21,7 +21,7 @@ class Sprite{
                 x: this.position.x,
                 y: this.position.y
             },
-            offset:offset,
+            offset,
             width: 100,
             height: 50
         }
@@ -47,7 +47,7 @@ class Sprite{
 
     update(){
         this.draw()
-        this.attackBox.position.x = this.position.x - this.attackBox.offset.x
+        this.attackBox.position.x = this.position.x + this.attackBox.offset.x
         this.attackBox.position.y = this.position.y
 
         this.position.x += this.velocity.x
@@ -74,6 +74,10 @@ const player = new Sprite({
     velocity:{
         x:0,
         y:0
+    },
+    offset:{
+        x:0,
+        y:0
     }
 })
 
@@ -86,7 +90,11 @@ const enemy = new Sprite({
         x:0,
         y:0
     },
-    color: "blue"
+    color: "blue",
+    offset:{
+        x: -50,
+        y:0
+    }
 })
 
 const keys = {
@@ -110,6 +118,14 @@ const keys = {
     }
 }
 
+function rectCollision({rect1, rect2}){
+    return(
+        rect1.attackBox.position.x + rect1.attackBox.width >=rect2.position.x && 
+        rect1.attackBox.position.x <= rect2.position.x + rect2.width && 
+        rect1.attackBox.position.y + rect1.attackBox.height >= rect2.position.y && 
+        rect1.attackBox.position.y <= rect2.position.y + rect2.height &&,
+    )
+}
 function animate(){
     window.requestAnimationFrame(animate);
     ctx.fillStyle = "black"
@@ -137,7 +153,11 @@ function animate(){
     // collision detection
     if
     (
-        player.attackBox.position.x + player.attackBox.width >=enemy.position.x && player.attackBox.position.x <= enemy.position.x + enemy.width && player.attackBox.position.y + player.attackBox.height >= enemy.position.y && player.attackBox.position.y <= enemy.position.y + enemy.height && player.isAttacking
+        player.attackBox.position.x + player.attackBox.width >=enemy.position.x && 
+        player.attackBox.position.x <= enemy.position.x + enemy.width && 
+        player.attackBox.position.y + player.attackBox.height >= enemy.position.y && 
+        player.attackBox.position.y <= enemy.position.y + enemy.height && 
+        player.isAttacking
     ){
         player.isAttacking = false
         console.log("go")

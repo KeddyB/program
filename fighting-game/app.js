@@ -118,12 +118,12 @@ const keys = {
     }
 }
 
-function rectCollision({rect1, rect2}){
+function rectCol({rect1, rect2}){
     return(
         rect1.attackBox.position.x + rect1.attackBox.width >=rect2.position.x && 
         rect1.attackBox.position.x <= rect2.position.x + rect2.width && 
         rect1.attackBox.position.y + rect1.attackBox.height >= rect2.position.y && 
-        rect1.attackBox.position.y <= rect2.position.y + rect2.height &&
+        rect1.attackBox.position.y <= rect2.position.y + rect2.height
     )
 }
 function animate(){
@@ -153,14 +153,25 @@ function animate(){
     // collision detection
     if
     (
-        player.attackBox.position.x + player.attackBox.width >=enemy.position.x && 
-        player.attackBox.position.x <= enemy.position.x + enemy.width && 
-        player.attackBox.position.y + player.attackBox.height >= enemy.position.y && 
-        player.attackBox.position.y <= enemy.position.y + enemy.height && 
+        rectCol({
+            rect1: player,
+            rect2: enemy
+        }) && 
         player.isAttacking
     ){
         player.isAttacking = false
         console.log("go")
+    }
+    if
+    (
+        rectCol({
+            rect1: enemy,
+            rect2: player
+        }) && 
+        enemy.isAttacking
+    ){
+        enemy.isAttacking = false
+        console.log("come")
     }
 }
 animate();
@@ -191,6 +202,9 @@ window.addEventListener('keydown', (e)=>{
         break
         case " ":
             player.attack();
+        break
+        case "ArrowDown":
+            enemy.attack()
         break
     }
 });

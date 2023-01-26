@@ -3,6 +3,7 @@
 }
 .parent{
     display: flex;
+    flex-direction: row;
 }
 .player-health{
     background-color: yellow; 

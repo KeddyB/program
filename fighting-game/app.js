@@ -6,7 +6,6 @@ canvas.width = 1024;
 canvas.height = 576;
 
 ctx.fillRect(0, 0, canvas.width, canvas.height);
-
 const gravity = .7
 
 class Sprite{
@@ -160,7 +159,7 @@ function animate(){
         player.isAttacking
     ){
         player.isAttacking = false
-        console.log("go")
+        
     }
     if
     (
@@ -171,7 +170,7 @@ function animate(){
         enemy.isAttacking
     ){
         enemy.isAttacking = false
-        console.log("come")
+        
     }
 }
 animate();

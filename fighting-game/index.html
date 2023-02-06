@@ -11,13 +11,16 @@
     <div class="container">
         <div class="parent">
             <!--player health-->
-            <div  class="player-health"></div>
+            <div class="enemyParent">
+                <div class="player-health"></div>
+                <div id="playerHealth" class="absolute"></div>
+            </div>
             <!--timer-->
             <div class="timer"></div>
             <!--enemy health-->
             <div class="enemyParent">
-                <div id="enemyHealth" class="enemy-health"></div>
-                <div class="absolute"></div>
+                <div class="enemy-health"></div>
+                <div id="enemyHealth" class="absolute"></div>
             </div>
         </div>
         <canvas id="canvas1"></canvas>

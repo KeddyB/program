@@ -25,7 +25,8 @@ class Sprite{
             height: 50
         }
         this.color = color
-        this.isAttacking 
+        this.isAttacking
+        this.health = 100
     }
 
     draw(){
@@ -159,7 +160,8 @@ function animate(){
         player.isAttacking
     ){
         player.isAttacking = false
-        document.querySelector("#enemyHealth").style.width = "20%"
+        enemy.health -= 20
+        document.querySelector("#enemyHealth").style.width = enemy.health + "%"
     }
     if
     (
@@ -170,7 +172,8 @@ function animate(){
         enemy.isAttacking
     ){
         enemy.isAttacking = false
-        
+        player.health -= 20
+        document.querySelector("#playerHealth").style.width = player.health + "%"
     }
 }
 animate();

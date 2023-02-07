@@ -8,19 +8,60 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <div class="parent">
+    <div style="position: relative; display: inline-block;">
+        <div class="parent"
+            style="position: absolute; 
+            display: flex;
+            width: 100%;
+            align-items: center;
+            padding: 20px;"
+        >
             <!--player health-->
-            <div class="enemyParent">
-                <div class="player-health"></div>
-                <div id="playerHealth" class="absolute"></div>
+            <div
+                style="
+                position: relative;
+                width: 100%;
+                height: 25px;
+                display: flex;
+                justify-content: flex-end;"
+            >
+                <div
+                    style="background-color: yellow; 
+                    top: 0;
+                    left: 0;
+                    bottom: 0;
+                    height: 25px;"
+                ></div>
+                <div id="playerHealth" 
+                    style="position: absolute;
+                    background: blue;
+                    right: 0;
+                    left: 0;
+                    top: 0;
+                    bottom: 0;"
+                ></div>
             </div>
             <!--timer-->
-            <div class="timer"></div>
+            <div class="timer"
+                style="background-color: red;
+                width: 100px; 
+                height: 100px;
+                flex-shrink: 0;"></div>
             <!--enemy health-->
-            <div class="enemyParent">
-                <div class="enemy-health"></div>
-                <div id="enemyHealth" class="absolute"></div>
+            <div
+                style="position: relative;
+                width: 100%;
+                height: 25px;"
+            >
+                <div style="background-color: yellow; height: 25px;"></div>
+                <div
+                    style="position: absolute;
+                    background: blue;
+                    right: 0;
+                    left: 0;
+                    top: 0;
+                    bottom: 0;"
+            ></div>
             </div>
         </div>
         <canvas id="canvas1"></canvas>

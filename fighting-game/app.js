@@ -15,6 +15,15 @@ const background = new Sprite({
     },
     imgSrc: "./img/background.png"
 })
+const shop = new Sprite({
+    position: {
+        x:600,
+        y:128
+    },
+    imgSrc: "./img/shop.png",
+    scale: 2.75,
+    frameMax: 6
+})
 const player = new Fighter({
     position: {
         x:0,
@@ -27,6 +36,27 @@ const player = new Fighter({
     offset:{
         x:0,
         y:0
+    },
+    imgSrc: "./img/samuraiMack/idle.png",
+    frameMax: 8,
+    scale: 2.5,
+    offset:{
+        x: 215,
+        y: 157
+    },
+    sprites:{
+        idle:{
+            imgSrc: "./img/samuraiMack/idle.png",
+            frameMax: 8
+        },
+        run:{
+            imgSrc: "./img/samuraiMack/run.png",
+            frameMax: 8
+        },
+        jump:{
+            imgSrc: "./img/samuraiMack/jump.png",
+            frameMax: 2
+        }
     }
 })
 
@@ -73,19 +103,27 @@ function animate(){
     ctx.fillStyle = "black"
     ctx.fillRect(0,0, canvas.width, canvas.height)
     background.update()
+    shop.update()
     player.update()
-    enemy.update()
+    //enemy.update()
 
     player.velocity.x = 0
     enemy.velocity.x = 0
 
     //player movement
+    player.img = player.sprites.idle.img
     if(keys.a.pressed && player.lastKey === "a"){
+        player.img = player.sprites.run.img
         player.velocity.x = -5
     }else if (keys.d.pressed && player.lastKey === "d"){
+        player.img = player.sprites.run.img
         player.velocity.x = 5
     }
 
+    if(player.velocity.y < 0){
+        player.img = player.sprites.jump.img
+        player.frameMax = player.sprites.jump.frameMax
+    }
     //enemy movement
     if(keys.arrowLeft.pressed && enemy.lastKey === "ArrowLeft"){
         enemy.velocity.x = -5

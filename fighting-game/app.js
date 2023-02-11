@@ -126,6 +126,18 @@ function rectCol({rect1, rect2}){
         rect1.attackBox.position.y <= rect2.position.y + rect2.height
     )
 }
+let timer = 10;
+function deTimer(){
+    if(timer > 0){
+        setTimeout(deTimer, 1000)
+        timer--
+        document.querySelector("#timer").innerHTML = timer
+    }
+    if(player.health === enemy.health){
+        console.log("a tie")
+    }
+}
+deTimer()
 function animate(){
     window.requestAnimationFrame(animate);
     ctx.fillStyle = "black"

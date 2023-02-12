@@ -96,15 +96,62 @@ class Fighter extends Sprite{
         this.position.x += this.velocity.x
         this.position.y += this.velocity.y
 
-        if(this.position.y + this.height + this.velocity.y>= canvas.height - 95){
+        //gravity
+        if(this.position.y + this.height + this.velocity.y>= canvas.height - 96){
             this.velocity.y = 0
+            this.position.y = 330
         }else this.velocity.y += gravity
         
     }
     attack(){
+        this.switchSprite("attack1")
         this.isAttacking = true
         setTimeout(()=>{
             this.isAttacking = false
         }, 100)
+    }
+    switchSprite(sprite){
+        if(
+            this.img === this.sprites.attack1.img && 
+            this.currentFrame < this.sprites.attack1.frameMax -1
+        ) 
+            return
+        switch(sprite){
+            case "idle":
+                if(this.img !== this.sprites.idle.img){
+                    this.img = this.sprites.idle.img
+                    this.frameMax = this.sprites.idle.frameMax
+                    this.currentFrame = 0;
+                }
+                break;
+            case "run":
+                if(this.img !== this.sprites.run.img){
+                    this.img = this.sprites.run.img
+                    this.frameMax = this.sprites.run.frameMax
+                    this.currentFrame = 0;
+                }
+                break;
+            case "jump":
+                if(this.img !== this.sprites.jump.img){
+                    this.img = this.sprites.jump.img
+                    this.frameMax = this.sprites.jump.frameMax
+                    this.currentFrame = 0;
+                }
+                break;
+            case "fall":
+                if(this.img !== this.sprites.fall.img){
+                    this.img = this.sprites.fall.img
+                    this.frameMax = this.sprites.fall.frameMax
+                    this.currentFrame = 0;
+                }
+                break;
+            case "attack1":
+                if(this.img !== this.sprites.attack1.img){
+                    this.img = this.sprites.attack1.img
+                    this.frameMax = this.sprites.attack1.frameMax
+                    this.currentFrame = 0;
+                }
+                break;
+        }
     }
 }

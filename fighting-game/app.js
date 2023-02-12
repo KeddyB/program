@@ -56,6 +56,14 @@ const player = new Fighter({
         jump:{
             imgSrc: "./img/samuraiMack/jump.png",
             frameMax: 2
+        },
+        fall:{
+            imgSrc: "./img/samuraiMack/fall.png",
+            frameMax: 2
+        },
+        attack1:{
+            imgSrc: "./img/samuraiMack/attack1.png",
+            frameMax: 6
         }
     }
 })
@@ -73,6 +81,35 @@ const enemy = new Fighter({
     offset:{
         x: -50,
         y:0
+    },
+    imgSrc: "./img/Kenji/idle.png",
+    frameMax: 4,
+    scale: 2.5,
+    offset:{
+        x: 215,
+        y: 168
+    },
+    sprites:{
+        idle:{
+            imgSrc: "./img/kenji/idle.png",
+            frameMax: 4
+        },
+        run:{
+            imgSrc: "./img/kenji/run.png",
+            frameMax: 8
+        },
+        jump:{
+            imgSrc: "./img/kenji/jump.png",
+            frameMax: 2
+        },
+        fall:{
+            imgSrc: "./img/kenji/fall.png",
+            frameMax: 2
+        },
+        attack1:{
+            imgSrc: "./img/kenji/Attack1.png",
+            frameMax: 4
+        }
     }
 })
 
@@ -105,30 +142,46 @@ function animate(){
     background.update()
     shop.update()
     player.update()
-    //enemy.update()
+    enemy.update()
 
     player.velocity.x = 0
     enemy.velocity.x = 0
 
     //player movement
-    player.img = player.sprites.idle.img
     if(keys.a.pressed && player.lastKey === "a"){
-        player.img = player.sprites.run.img
         player.velocity.x = -5
+        player.switchSprite("run")
     }else if (keys.d.pressed && player.lastKey === "d"){
-        player.img = player.sprites.run.img
         player.velocity.x = 5
+        player.switchSprite("run")
     }
-
+    else{
+        player.switchSprite("idle")
+    }
+    //player jumping
     if(player.velocity.y < 0){
-        player.img = player.sprites.jump.img
-        player.frameMax = player.sprites.jump.frameMax
+        player.switchSprite("jump");
+    }else if(player.velocity.y > 0){
+        player.switchSprite("fall");
     }
     //enemy movement
     if(keys.arrowLeft.pressed && enemy.lastKey === "ArrowLeft"){
         enemy.velocity.x = -5
+        enemy.switchSprite("run")
     }else if (keys.arrowRight.pressed && enemy.lastKey === "ArrowRight"){
         enemy.velocity.x = 5
+        enemy.switchSprite("run")
+    }
+    else{
+        enemy.switchSprite("idle")
+    }
+    //enemy jumping
+    if(enemy.velocity.y < 0){
+        enemy.switchSprite("jump");
+        enemy.img = enemy.sprites.jump.img
+    }else if(enemy.velocity.y > 0){
+        enemy.switchSprite("fall");
+        enemy.img = enemy.sprites.fall.img
     }
 
     // collision detection
@@ -176,6 +229,9 @@ window.addEventListener('keydown', (e)=>{
         case "w":
             player.velocity.y += -20
         break
+        case " ":
+            player.attack();
+        break
         case "ArrowRight":
             keys.arrowRight.pressed = true
             enemy.lastKey = "ArrowRight"
@@ -186,9 +242,6 @@ window.addEventListener('keydown', (e)=>{
         break
         case "ArrowUp":
             enemy.velocity.y -= 20
-        break
-        case " ":
-            player.attack();
         break
         case "ArrowDown":
             enemy.attack()

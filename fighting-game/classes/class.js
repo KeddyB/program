@@ -117,10 +117,17 @@ class Fighter extends Sprite{
         this.isAttacking = true
     }
     takeHit(){
-        this.switchSprite("takeHit")
         this.health -= 20
+
+        if(this.health <= 0){
+            this.switchSprite("death")
+        }else{
+            this.switchSprite("takeHit")
+        }
+
     }
     switchSprite(sprite){
+        if(this.img == this.sprites.death.img) return
         if(
             this.img === this.sprites.attack1.img && 
             this.currentFrame < this.sprites.attack1.frameMax -1
@@ -177,6 +184,14 @@ class Fighter extends Sprite{
                     this.currentFrame = 0;
                 }
                 break;
+            case "death":
+                if(this.img !== this.sprites.death.img){
+                    this.img = this.sprites.death.img
+                    this.frameMax = this.sprites.death.frameMax
+                    this.currentFrame = 0;
+                }
+                break;
+            
         }
     }
 }

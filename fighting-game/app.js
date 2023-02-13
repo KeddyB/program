@@ -71,7 +71,7 @@ const player = new Fighter({
         },
         death:{
             imgSrc: "./img/samuraiMack/death.png",
-            frameMax: 4
+            frameMax: 6
         }
     },
     attackBox:{
@@ -263,35 +263,41 @@ function animate(){
 animate();
 
 window.addEventListener('keydown', (e)=>{
-    switch(e.key){
-        case "d":
-            keys.d.pressed = true
-            player.lastKey="d"
-        break
-        case "a":
-            keys.a.pressed = true
-            player.lastKey="a"
-        break
-        case "w":
-            player.velocity.y += -20
-        break
-        case " ":
-            player.attack();
-        break
-        case "ArrowRight":
-            keys.arrowRight.pressed = true
-            enemy.lastKey = "ArrowRight"
-        break
-        case "ArrowLeft":
-            keys.arrowLeft.pressed = true
-            enemy.lastKey = "ArrowLeft"
-        break
-        case "ArrowUp":
-            enemy.velocity.y -= 20
-        break
-        case "ArrowDown":
-            enemy.attack()
-        break
+    if(!player.dead){
+        switch(e.key){
+            case "d":
+                keys.d.pressed = true
+                player.lastKey="d"
+            break
+            case "a":
+                keys.a.pressed = true
+                player.lastKey="a"
+            break
+            case "w":
+                player.velocity.y += -20
+            break
+            case " ":
+                player.attack();
+            break
+        }
+    }
+    if(!enemy.dead){
+        switch(e.key){
+            case "ArrowRight":
+                keys.arrowRight.pressed = true
+                enemy.lastKey = "ArrowRight"
+            break
+            case "ArrowLeft":
+                keys.arrowLeft.pressed = true
+                enemy.lastKey = "ArrowLeft"
+            break
+            case "ArrowUp":
+                enemy.velocity.y -= 20
+            break
+            case "ArrowDown":
+                enemy.attack()
+            break
+        }
     }
 });
 

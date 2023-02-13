@@ -102,8 +102,6 @@ class Fighter extends Sprite{
         this.attackBox.position.x = this.position.x + this.attackBox.offset.x
         this.attackBox.position.y = this.position.y + this.attackBox.offset.y
 
-        ctx.fillRect(this.attackBox.position.x, this.attackBox.position.y, this.attackBox.width, this.attackBox.height)
-
         this.position.x += this.velocity.x
         this.position.y += this.velocity.y
 
@@ -117,6 +115,10 @@ class Fighter extends Sprite{
     attack(){
         this.switchSprite("attack1")
         this.isAttacking = true
+    }
+    takeHit(){
+        this.switchSprite("takeHit")
+        this.health -= 20
     }
     switchSprite(sprite){
         if(
@@ -157,6 +159,13 @@ class Fighter extends Sprite{
                 if(this.img !== this.sprites.attack1.img){
                     this.img = this.sprites.attack1.img
                     this.frameMax = this.sprites.attack1.frameMax
+                    this.currentFrame = 0;
+                }
+                break;
+            case "takeHit":
+                if(this.img !== this.sprites.takeHit.img){
+                    this.img = this.sprites.takeHit.img
+                    this.frameMax = this.sprites.takeHit.frameMax
                     this.currentFrame = 0;
                 }
                 break;

@@ -117,6 +117,10 @@ const enemy = new Fighter({
         attack1:{
             imgSrc: "./img/kenji/Attack1.png",
             frameMax: 4
+        },
+        takeHit:{
+            imgSrc: "./img/kenji/Take Hit.png",
+            frameMax: 3
         }
     },
     attackBox:{
@@ -209,8 +213,8 @@ function animate(){
         }) && 
         player.isAttacking && player.currentFrame == 4
     ){
+        enemy.takeHit()
         player.isAttacking = false
-        enemy.health -= 20
         document.querySelector("#enemyHealth").style.width = enemy.health + "%"
     }
 
@@ -226,16 +230,19 @@ function animate(){
             rect1: enemy,
             rect2: player
         }) && 
-        enemy.isAttacking
+        enemy.isAttacking && 
+        enemy.currentFrame === 2
     ){
         enemy.isAttacking = false
         player.health -= 20
         document.querySelector("#playerHealth").style.width = player.health + "%"
-        //player misses
-    if(enemy.isAttacking && enemy.currentFrame === 4){
+    }
+    //enemy misses
+    if(enemy.isAttacking && enemy.currentFrame === 2){
         enemy.isAttacking = false
     }
-    }
+    
+    //end game based on health
     if(enemy.health <= 0 || player.health <= 0){
         winner({player, enemy, timerId})
         

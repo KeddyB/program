@@ -173,6 +173,8 @@ function animate(){
     ctx.fillRect(0,0, canvas.width, canvas.height)
     background.update()
     shop.update()
+    ctx.fillStyle = "rgba(255, 255, 255, 0.15)"
+    ctx.fillRect(0,0, canvas.width, canvas.height)
     player.update()
     enemy.update()
 
@@ -227,7 +229,10 @@ function animate(){
     ){
         enemy.takeHit()
         player.isAttacking = false
-        document.querySelector("#enemyHealth").style.width = enemy.health + "%"
+        //document.querySelector("#enemyHealth").style.width = enemy.health + "%"
+        gsap.to("#enemyHealth",{
+            width: enemy.health + "%"
+        })
     }
 
     //player misses
@@ -247,7 +252,10 @@ function animate(){
     ){
         player.takeHit()
         enemy.isAttacking = false
-        document.querySelector("#playerHealth").style.width = player.health + "%"
+        //document.querySelector("#playerHealth").style.width = player.health + "%"
+        gsap.to("#playerHealth",{
+            width: player.health + "%"
+        })
     }
     //enemy misses
     if(enemy.isAttacking && enemy.currentFrame === 2){

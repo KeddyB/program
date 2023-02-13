@@ -65,6 +65,14 @@ const player = new Fighter({
             imgSrc: "./img/samuraiMack/attack1.png",
             frameMax: 6
         }
+    },
+    attackBox:{
+        offset:{
+            x:100,
+            y: 50
+        },
+        width: 157,
+        height: 50
     }
 })
 
@@ -110,6 +118,14 @@ const enemy = new Fighter({
             imgSrc: "./img/kenji/Attack1.png",
             frameMax: 4
         }
+    },
+    attackBox:{
+        offset:{
+            x:-173,
+            y: 50
+        },
+        width: 165,
+        height: 50
     }
 })
 
@@ -184,19 +200,26 @@ function animate(){
         enemy.img = enemy.sprites.fall.img
     }
 
-    // collision detection
+    // collision detection for player
     if
     (
         rectCol({
             rect1: player,
             rect2: enemy
         }) && 
-        player.isAttacking
+        player.isAttacking && player.currentFrame == 4
     ){
         player.isAttacking = false
         enemy.health -= 20
         document.querySelector("#enemyHealth").style.width = enemy.health + "%"
     }
+
+    //player misses
+    if(player.isAttacking && player.currentFrame === 4){
+        player.isAttacking = false
+    }
+     
+    //collision detection for enemy
     if
     (
         rectCol({
@@ -208,6 +231,10 @@ function animate(){
         enemy.isAttacking = false
         player.health -= 20
         document.querySelector("#playerHealth").style.width = player.health + "%"
+        //player misses
+    if(enemy.isAttacking && enemy.currentFrame === 4){
+        enemy.isAttacking = false
+    }
     }
     if(enemy.health <= 0 || player.health <= 0){
         winner({player, enemy, timerId})

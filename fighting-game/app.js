@@ -64,6 +64,10 @@ const player = new Fighter({
         attack1:{
             imgSrc: "./img/samuraiMack/attack1.png",
             frameMax: 6
+        },
+        takeHit:{
+            imgSrc: "./img/samuraiMack/Take Hit - white silhouette.png",
+            frameMax: 4
         }
     },
     attackBox:{
@@ -233,8 +237,8 @@ function animate(){
         enemy.isAttacking && 
         enemy.currentFrame === 2
     ){
+        player.takeHit()
         enemy.isAttacking = false
-        player.health -= 20
         document.querySelector("#playerHealth").style.width = player.health + "%"
     }
     //enemy misses

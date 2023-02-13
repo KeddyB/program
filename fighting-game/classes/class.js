@@ -124,8 +124,16 @@ class Fighter extends Sprite{
         if(
             this.img === this.sprites.attack1.img && 
             this.currentFrame < this.sprites.attack1.frameMax -1
-        ) 
+        ){
             return
+        }
+
+        if(
+            this.img === this.sprites.takeHit.img && 
+            this.currentFrame < this.sprites.takeHit.frameMax -1
+        ){
+            return
+        }
         switch(sprite){
             case "idle":
                 if(this.img !== this.sprites.idle.img){

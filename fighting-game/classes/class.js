@@ -99,7 +99,7 @@ class Fighter extends Sprite{
     }
     update(){
         this.draw()
-        if (this.dead)
+        if (this.dead == false)
             this.animateFrames()
         this.animateFrames()
         this.attackBox.position.x = this.position.x + this.attackBox.offset.x

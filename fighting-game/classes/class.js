@@ -120,7 +120,7 @@ class Fighter extends Sprite{
         this.isAttacking = true
     }
     takeHit(){
-        this.health -= 5
+        this.health -= 2.5
 
         if(this.health <= 0){
             this.switchSprite("death")

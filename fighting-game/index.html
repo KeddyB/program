@@ -10,7 +10,13 @@
     <title>Fighting Game</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body style="
+    margin: auto;
+    display: block;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;">
     <div style="position: relative; display: inline-block;">
         <div class="parent"
             style="position: absolute; 
@@ -90,7 +96,10 @@
         >
             Tie
         </div>
-        <canvas id="canvas1"></canvas>
+        <div class ="wrapper"> 
+            <canvas id="canvas1"></canvas>
+        </div>
+        
         <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js" integrity="sha512-f8mwTB+Bs8a5c46DEm7HQLcJuHMBaH/UFlcgyetMqqkvTcYg4g5VXsYR71b3qC82lZytjNYvBj2pf0VekA9/FQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script src="classes/utils.js"></script>
         <script src="classes/class.js"></script>

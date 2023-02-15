@@ -86,6 +86,7 @@ class Fighter extends Sprite{
             sprites[sprite].img.src = sprites[sprite].imgSrc
         }
     }
+
     animateFrames(){
         this.draw()
         this.frameElapsed++
@@ -97,6 +98,7 @@ class Fighter extends Sprite{
             }
         }
     }
+
     update(){
         this.draw()
         if (!this.dead)
@@ -113,12 +115,13 @@ class Fighter extends Sprite{
             this.velocity.y = 0
             this.position.y = 330
         }else this.velocity.y += gravity
-        
     }
+
     attack(){
         this.switchSprite("attack1")
         this.isAttacking = true
     }
+
     takeHit(){
         this.health -= 2.5
 
@@ -128,6 +131,7 @@ class Fighter extends Sprite{
             this.switchSprite("takeHit")
         }
     }
+
     switchSprite(sprite){
         if(this.img === this.sprites.death.img){
             if (this.currentFrame === this.sprites.death.frameMax - 1){
@@ -148,6 +152,7 @@ class Fighter extends Sprite{
         ){
             return
         }
+
         switch(sprite){
             case "idle":
                 if(this.img !== this.sprites.idle.img){
@@ -198,7 +203,6 @@ class Fighter extends Sprite{
                     this.currentFrame = 0;
                 }
                 break;
-            
         }
     }
 }

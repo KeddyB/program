@@ -310,7 +310,7 @@ window.addEventListener('keydown', (e)=>{
                 enemy.attack()
             break
         }
-    }else if (enemy.dead || player.dead || timer == 0){
+    }else if (enemy.dead || player.dead || timer <= 0){
         switch(e.key){
             case "Enter":
                 console.log("enter")

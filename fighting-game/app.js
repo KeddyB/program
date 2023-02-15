@@ -144,7 +144,7 @@ const enemy = new Fighter({
         height: 50
     }
 })
-function restart(){
+function restartGame(){
     player.restart()
     enemy.restart()
 }
@@ -309,6 +309,11 @@ window.addEventListener('keydown', (e)=>{
             case "ArrowDown":
                 enemy.attack()
             break
+        }
+    }else if(enemy.dead || player.dead){
+        switch(e.key){
+            case "Enter":
+                restartGame();
         }
     }
 });

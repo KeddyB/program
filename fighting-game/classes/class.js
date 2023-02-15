@@ -81,12 +81,19 @@ class Fighter extends Sprite{
         this.sprites = sprites,
         this.dead = false
         
-
-
+        
         for(const sprite in this.sprites){
             sprites[sprite].img = new Image()
             sprites[sprite].img.src = sprites[sprite].imgSrc
         }
+    }
+
+    restart(){
+        this.draw()
+        this.position.x
+        this.position.y
+        this.health = 100
+        timer = 60;
     }
 
     animateFrames(){
@@ -206,12 +213,5 @@ class Fighter extends Sprite{
                 }
                 break;
         }
-    }
-    restart(){
-        this.position.x
-        this.position.y
-        this.health = 100
-        this.frameMax = 1
-        timer = 60;
     }
 }

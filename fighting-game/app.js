@@ -144,10 +144,6 @@ const enemy = new Fighter({
         height: 50
     }
 })
-function restartGame(){
-    player.restart()
-    enemy.restart()
-}
 
 const keys = {
     a:{

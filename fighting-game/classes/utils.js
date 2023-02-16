@@ -19,7 +19,7 @@ function winner({player, enemy, timerId}){
         document.querySelector("#displayText").innerHTML = "Player 2 Wins"
     }
 }
-let timer = 5;
+let timer = 90;
 let timerId
 function deTimer(){
     if(timer > 0){

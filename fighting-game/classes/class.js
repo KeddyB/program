@@ -88,9 +88,6 @@ class Fighter extends Sprite{
         }
     }
 
-    restart(){
-        
-    }
 
     animateFrames(){
         this.draw()
@@ -128,7 +125,7 @@ class Fighter extends Sprite{
     }
 
     takeHit(){
-        this.health -= 50
+        this.health -= 5
 
         if(this.health <= 0){
             this.switchSprite("death")

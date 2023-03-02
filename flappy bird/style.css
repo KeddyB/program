@@ -3,5 +3,7 @@ body{
     background-color: black;
 }
 canvas{
+    width: 360px;
+    height: 640px;
     background-image: url(./flappybirdbg.png);
 }

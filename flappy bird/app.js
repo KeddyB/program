@@ -30,6 +30,7 @@ let bottomPipeImg
 let velocityX = -2
 let velocityY = 0
 let gravity = .5
+let gameOver = false
 
 window.onload = function(){
     canvas = document.getElementById("canvas1");
@@ -60,6 +61,9 @@ window.onload = function(){
 }
 function update(){
     requestAnimationFrame(update)
+    if(gameOver){
+        return
+    }
     ctx.clearRect(0, 0, canvasWidth, canvasHeight)
 
     velocityY += gravity
@@ -67,15 +71,25 @@ function update(){
     bird.y = Math.max(bird.y + velocityY, 0)
     ctx.drawImage(birdImg, bird.x, bird.y,bird.width, bird.height)
 
+    if(bird.y > canvas.height){
+        gameOver = true
+    }
     //pipes
     for(let i = 0; i < pipeArray.length; i++){
         let pipe = pipeArray[i]
         pipe.x += velocityX;
         ctx.drawImage(pipe.img, pipe.x, pipe.y, pipe.width, pipe.height)
+
+        if(detCol(bird, pipe)){
+            gameOver = true
+        }
     }
 }
 
 function placePipes(){
+    if(gameOver){
+        return
+    }
     let randomPipeY = pipeY - pipeHeight/4 - Math.floor(Math.random() * (pipeHeight/2))
     let opening = canvasHeight/4
     let topPipe = {
@@ -97,4 +111,10 @@ function placePipes(){
         passed: false
     }
     pipeArray.push(bottomPipe)
+}
+function detCol(a, b){
+    return  a.x < b.x + b.width &&
+            a.x + a.width > b.x &&
+            a.y < b.y + b.height &&
+            a.y + a.height > b.y 
 }

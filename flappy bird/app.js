@@ -31,6 +31,7 @@ let velocityX = -2
 let velocityY = 0
 let gravity = .5
 let gameOver = false
+let score = 0
 
 window.onload = function(){
     canvas = document.getElementById("canvas1");
@@ -56,6 +57,14 @@ window.onload = function(){
     document.addEventListener("keydown", (e)=>{
         if(e.code == "Space" || e.code == "ArrowUp"){
             velocityY = -6
+
+            if(gameOver){
+                bird.y = birdY
+                pipeArray = []
+
+                score = 0
+                gameOver = false
+            }
         }
     })
 }
@@ -64,6 +73,7 @@ function update(){
     if(gameOver){
         return
     }
+
     ctx.clearRect(0, 0, canvasWidth, canvasHeight)
 
     velocityY += gravity
@@ -80,9 +90,27 @@ function update(){
         pipe.x += velocityX;
         ctx.drawImage(pipe.img, pipe.x, pipe.y, pipe.width, pipe.height)
 
+        if(!pipe.passed && bird.x > pipe.x + pipe.width){
+            score += .5
+            pipe.passed = true
+        }
+
         if(detCol(bird, pipe)){
             gameOver = true
         }
+    }
+    while(pipeArray.length > 0 && pipeArray[0].x < -pipeWidth){
+        pipeArray.shift()
+    }
+
+    //score
+    ctx.fillStyle = "white"
+    ctx.font = "40px sans-serif"
+    ctx.fillText(score, 5, 45)
+
+    //gameover
+    if(gameOver){
+        ctx.fillText("Game Over", 4, 90)
     }
 }
 

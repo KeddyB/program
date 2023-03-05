@@ -54,6 +54,20 @@ window.onload = function(){
     requestAnimationFrame(update)
     setInterval(placePipes, 1500)
 
+    document.addEventListener("touchstart", (e)=>{
+        if(e.code == "Space" || e.code == "ArrowUp"){
+            velocityY = -6
+
+            if(gameOver){
+                bird.y = birdY
+                pipeArray = []
+
+                score = 0
+                gameOver = false
+            }
+        }
+    })
+
     document.addEventListener("keydown", (e)=>{
         if(e.code == "Space" || e.code == "ArrowUp"){
             velocityY = -6

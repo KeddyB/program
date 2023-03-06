@@ -34,7 +34,6 @@ let gameOver = false
 let score = 0
 let start = false;
 
-
 window.onload = function(){
     canvas = document.getElementById("canvas1");
     ctx = canvas.getContext("2d");

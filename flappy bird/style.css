@@ -7,7 +7,3 @@ canvas{
     height: 640px;
     background-image: url(./flappybirdbg.png);
 }
-p{
-    color: aqua;
-    font-family: poppins;
-}

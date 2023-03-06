@@ -119,13 +119,16 @@ function update(){
 
     //score
     ctx.fillStyle = "white"
-    ctx.font = "40px sans-serif"
-    ctx.fillText(score, 5, 45)
+    ctx.font = "25px sans-serif"
+    ctx.fillText(score, 10, 50)
 
     //gameover
+    ctx.font = "30px sans-serif"
     if(gameOver){
-        ctx.fillText("Game Over", 4, 90)
+        ctx.fillText("GAME OVER", 87, 320)
     }
+    //High score
+    ctx.font = "20px sans-serif"
 }
 
 function placePipes(){

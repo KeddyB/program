@@ -33,6 +33,7 @@ let gravity = .5
 let gameOver = false
 let score = 0
 let start = false;
+let scoreArray = []
 
 window.onload = function(){
     canvas = document.getElementById("canvas1");
@@ -60,6 +61,12 @@ window.onload = function(){
             velocityY = -6
 
             if(gameOver){
+                //High score
+                scoreArray.push(score)
+                let max = (Math.max(...scoreArray))
+
+                document.querySelector("span").innerHTML = max
+                
                 bird.y = birdY
                 pipeArray = []
 
@@ -74,6 +81,12 @@ window.onload = function(){
             velocityY = -6
 
             if(gameOver){
+                //High score
+                scoreArray.push(score)
+                let max = (Math.max(...scoreArray))
+
+                document.querySelector("span").innerHTML = max
+                
                 bird.y = birdY
                 pipeArray = []
 
@@ -128,8 +141,6 @@ function update(){
     if(gameOver){
         ctx.fillText("GAME OVER", 87, 320)
     }
-    //High score
-    ctx.font = "20px sans-serif"
 }
 
 function placePipes(){

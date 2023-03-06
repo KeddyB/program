@@ -13,3 +13,7 @@ canvas{
     height: 640px;
     background-image: url(./flappybirdbg.png);
 }
+p{
+    color: skyblue;
+    font-family: 'Press Start 2P', cursive;
+}

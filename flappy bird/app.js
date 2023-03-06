@@ -32,6 +32,8 @@ let velocityY = 0
 let gravity = .5
 let gameOver = false
 let score = 0
+let start = false;
+
 
 window.onload = function(){
     canvas = document.getElementById("canvas1");

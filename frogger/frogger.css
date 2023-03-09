@@ -1,0 +1,39 @@
+.grid{
+    border: solid black 1px;
+    height: 180px;
+    width: 180px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.grid div{
+    height: 20px;
+    width: 20px;
+}
+
+.ending-block{
+    background-color: brown;
+}
+
+.starting-block{
+    background-color: rgb(139, 93, 6);
+}
+
+.l1, .l2, .l3{
+    background-color: rgba(99, 41, 41, 0.561);
+}
+
+.l4, .l5{
+    background-color: rgb(139, 223, 223)
+}
+.c1{
+    background-image: url('pizza.png');
+    background-size: cover;
+} 
+
+.c2, .c3{
+    background-color: grey;
+}
+.frog{
+    background-color:greenyellow;
+}

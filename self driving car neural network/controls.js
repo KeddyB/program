@@ -23,10 +23,30 @@ class Controls {
                     this.right = true
                     break
             }
+            console.log(this)
         }
-        document.touchstart = (e) => {
+        document.onkeyup = (e) => {
+            switch(e.key){
+                case "ArrowUp":
+                    this.forward = false
+                    break
+                case "ArrowDown":
+                    this.reverse = false
+                    break
+                case "ArrowLeft":
+                    this.left = false
+                    break
+                case "ArrowRight":
+                    this.right = false
+                    break
+            }
+            console.log(this)
+        }
+        console.log(this)
+        //touch support for game look out
+        /*document.touchstart = (e) => {
             switch(e.type) {
             }
-        }
+        }*/
     }
 }

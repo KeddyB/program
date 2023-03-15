@@ -25,7 +25,7 @@ class Car {
             this.speed = this.maxSpeed
         }
         if(this.speed < -this.maxSpeed/2){
-            this.speed -= this.maxSpeed/2
+            this.speed =- this.maxSpeed/2
         }
 
         if(this.speed > 0){
@@ -35,7 +35,7 @@ class Car {
             this.speed += this.friction
         }
         this.y -= this.speed
-        
+        console.log(this.speed)
     }
     draw(ctx){
         ctx.beginPath();

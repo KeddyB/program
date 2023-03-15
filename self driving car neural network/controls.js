@@ -23,7 +23,7 @@ class Controls {
                     this.right = true
                     break
             }
-            console.log(this)
+            
         }
         document.onkeyup = (e) => {
             switch(e.key){
@@ -40,7 +40,7 @@ class Controls {
                     this.right = false
                     break
             }
-            console.log(this)
+            
         }
         console.log(this)
         //touch support for game look out

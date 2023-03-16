@@ -15,6 +15,9 @@ class Car {
     }
 
     update(){
+        this.#move()
+    }
+    #move(){
         if(this.controls.forward){
             this.speed += this.acceleration
         }
@@ -22,12 +25,16 @@ class Car {
             this.speed -= this.acceleration
         }
 
-        if(this.controls.right){
-            this.angle += .03
+        if(this.speed != 0){
+            const flip = this.speed > 0? 1: -1
+            if(this.controls.right){
+            this.angle -= .03 * flip
         }
         if(this.controls.left){
-            this.angle -= .03
+            this.angle += .03 * flip
         }
+        }
+        
         if(this.speed > this.maxSpeed){
             this.speed = this.maxSpeed
         }

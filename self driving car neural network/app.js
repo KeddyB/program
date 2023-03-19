@@ -8,7 +8,7 @@ const car = new Car(road.getLaneCenter(1), 500, 30, 50)
 animate()
 
 function animate(){
-    car.update(roadBorders)
+    car.update()
 
     canvas.height = window.innerHeight
 

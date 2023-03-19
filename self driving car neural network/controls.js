@@ -23,7 +23,7 @@ class Controls {
                     this.right = true
                     break
             }
-            
+             
         }
         document.onkeyup = (e) => {
             switch(e.key){

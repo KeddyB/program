@@ -13,9 +13,9 @@ function getIntersection(A,B,C,D){
             return {
                 x: lerp(A.x,B.x,t),
                 y: lerp(A.y,B.y,t),
-                offset:t
+                offset: t
             }
         }
     }
-    return null
+    //return null
 }

@@ -19,6 +19,12 @@ class Car {
         this.#move()
         this.sensor.update( roadBorders)
     }
+    
+    #createPolygon(){
+        const points = [];
+        const rad = Math.hypot(this.width, this.height)
+    }
+
     #move(){
         if(this.controls.forward){
             this.speed += this.acceleration

@@ -12,7 +12,7 @@ function getIntersection(A,B,C,D){
         if(t>=0 && t<=1 && u>=0 && u<=1){
             return {
                 x: lerp(A.x,B.x,t),
-                y:lerp(A.y,B.y,t),
+                y: lerp(A.y,B.y,t),
                 offset:t
             }
         }

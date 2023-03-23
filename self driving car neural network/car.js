@@ -91,6 +91,12 @@ class Car {
         this.y -= Math.cos(this.angle) * this.speed
     }
     draw(ctx){
+        if(this.damaged){
+            ctx.fillStyle = "grey"
+        }
+        else{
+            ctx.fillStyle = "black"
+        }
         ctx.save()
         ctx.beginPath()
         ctx.moveTo(this.polygon[0].x, this.polygon[0].y)

@@ -12,6 +12,7 @@ const traffic = [
 animate()
 
 function animate(){
+    
     car.update(road.borders)
 
     canvas.height = window.innerHeight

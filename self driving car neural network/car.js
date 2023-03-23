@@ -10,6 +10,7 @@ class Car {
         this.friction = .05
         this.maxSpeed = 3
         this.angle = 0
+        this.damaged = false
 
         this.sensor = new Sensor(this)
         this.controls = new Controls();
@@ -18,9 +19,17 @@ class Car {
     update(roadBorders){
         this.#move()
         this.polygon = this.#createPolygon()
+        this.damaged = this.#assessDamaged(roadBorders)
         this.sensor.update( roadBorders)
     }
     
+    #assessDamage(roadBorders){
+        for(let i = 0; i < roadBorders; i++){
+            if(polyIntersect(this.polygon, roadBorders[i])){
+                return true
+            }
+        }
+    }
     #createPolygon(){
         const points = [];
         const rad = Math.hypot(this.width, this.height)/2;

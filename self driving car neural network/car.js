@@ -19,16 +19,17 @@ class Car {
     update(roadBorders){
         this.#move()
         this.polygon = this.#createPolygon()
-        this.damaged = this.#assessDamaged(roadBorders)
-        this.sensor.update( roadBorders)
+        this.damaged = this.#assessDamage(roadBorders)
+        this.sensor.update(roadBorders)
     }
     
     #assessDamage(roadBorders){
-        for(let i = 0; i < roadBorders; i++){
+        for(let i = 0; i < roadBorders.length; i++){
             if(polyIntersect(this.polygon, roadBorders[i])){
                 return true
             }
         }
+        return false
     }
     #createPolygon(){
         const points = [];
@@ -91,7 +92,7 @@ class Car {
         this.y -= Math.cos(this.angle) * this.speed
     }
     draw(ctx){
-        if(this.damaged){
+        if(this.damaged ){
             ctx.fillStyle = "grey"
         }
         else{

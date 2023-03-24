@@ -103,12 +103,12 @@ class Car {
         this.x -= Math.sin(this.angle) * this.speed
         this.y -= Math.cos(this.angle) * this.speed
     }
-    draw(ctx){
+    draw(ctx, color){
         if(this.damaged ){
-            ctx.fillStyle = "grey"
+            ctx.fillStyle = color
         }
         else{
-            ctx.fillStyle = "black"
+            ctx.fillStyle = color
         }
         ctx.save()
         ctx.beginPath()

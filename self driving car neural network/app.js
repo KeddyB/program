@@ -8,8 +8,7 @@ const carCtx = carCanvas.getContext("2d")
 const networkCtx = networkCanvas.getContext("2d")
 const road = new Road(carCanvas.width/2, carCanvas.width * .9)
 
-const N = 100
-const cars = generateCars(N)
+const car = new Car(road.getLaneCenter(1), 100, 30, 50, "AI", 3)
 
 const traffic = [
     new Car(road.getLaneCenter(1), -100, 30, 50, "DUMMY", 2)
@@ -29,28 +28,25 @@ function animate(time){
     for(let i=0; i < traffic.length; i++){
         traffic[i].update(road.borders, [])
     }
-    for(let i=0; i < cars.length; i++){
-        cars[i].update(road.borders, traffic)
-    }
+    
+        car.update(road.borders, traffic)
 
     carCanvas.height = window.innerHeight
     networkCanvas.height = window.innerHeight
 
     carCtx.save()
-    carCtx.translate(0, -cars[0].y + carCanvas.height * 0.7)
+    carCtx.translate(0, -car.y + carCanvas.height * 0.7)
     road.draw(carCtx)
 
     for(let i=0; i<traffic.length; i++){
         traffic[i].draw(carCtx, "red")
     }
-    for(let i=0; i<cars.length; i++){
-        cars.draw(carCtx, "blue")
-    }
+        car.draw(carCtx, "blue")
     
 
     carCtx.restore()
 
     networkCtx.lineDashOffset = -time/50
-    Visualizer.drawNetwork(networkCtx,car[0].brain)
+    Visualizer.drawNetwork(networkCtx,car.brain)
     requestAnimationFrame(animate)
 }

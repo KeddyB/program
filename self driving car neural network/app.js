@@ -32,6 +32,9 @@ function animate(){
         traffic[i].draw(carCtx, "red")
     }
     car.draw(carCtx, "blue")
+
     carCtx.restore()
+
+    Visualizer.drawNetwork(networkCtx,car.brain)
     requestAnimationFrame(animate)
 }

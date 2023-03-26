@@ -20,9 +20,9 @@ animate()
 function generateCars(N){
     const cars = []
     for(let i = 1; i <= N; i++){
-        cars[i].push(new Car(road.getLaneCenter(1),100,30,50,"AI"))
+        cars.push(new Car(road.getLaneCenter(1),100,30,50,"AI"))
     }
-    return
+    return cars
 }
 
 function animate(time){

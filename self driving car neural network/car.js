@@ -121,7 +121,7 @@ class Car {
     }
     draw(ctx, color){
         if(this.damaged ){
-            ctx.fillStyle = color
+            ctx.fillStyle = "gray"
         }
         else{
             ctx.fillStyle = color

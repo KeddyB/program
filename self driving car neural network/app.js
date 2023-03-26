@@ -25,14 +25,13 @@ function generateCars(N){
     return
 }
 
-function animate(){
+function animate(time){
     for(let i=0; i < traffic.length; i++){
         traffic[i].update(road.borders, [])
     }
-    for(let i=0; i<cars.length; i++){
+    for(let i=0; i < cars.length; i++){
         cars[i].update(road.borders, traffic)
     }
-    
 
     carCanvas.height = window.innerHeight
     networkCanvas.height = window.innerHeight
@@ -45,12 +44,13 @@ function animate(){
         traffic[i].draw(carCtx, "red")
     }
     for(let i=0; i<cars.length; i++){
-        car.draw(carCtx, "blue")
+        cars.draw(carCtx, "blue")
     }
     
 
     carCtx.restore()
 
+    networkCtx.lineDashOffset = -time/50
     Visualizer.drawNetwork(networkCtx,car[0].brain)
     requestAnimationFrame(animate)
 }

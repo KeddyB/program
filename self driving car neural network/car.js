@@ -1,5 +1,5 @@
 class Car {
-    constructor(x, y, width, height, controlType, maxSpeed = 3){
+    constructor(x, y, width, height, controlType, maxSpeed = 3, color = "blue"){
         this.x = x;
         this.y = y;
         this.width = width;
@@ -23,6 +23,11 @@ class Car {
         this.controls = new Controls(controlType);
         this.img = new Image
         this.img.src = "car.png"
+
+        this.mask = document.createElement("canvas")
+        this.mask.width = width
+        this.mask.height = height
+        
     }
 
     update(roadBorders, traffic){
@@ -121,7 +126,7 @@ class Car {
         this.x -= Math.sin(this.angle) * this.speed
         this.y -= Math.cos(this.angle) * this.speed
     }
-    draw(ctx, color, drawSensor= false){
+    draw(ctx, drawSensor= false){
         // if(this.damaged ){
         //     ctx.fillStyle = "gray"
         // }

@@ -29,20 +29,20 @@ class Level{
         this.outputs = new Array(outputCount)
         this.biases = new Array(outputCount)
 
-        this.weight = []
+        this.weights = []
         for(let i = 0; i < inputCount;i++){
-            this.weight[i] = new Array(outputCount);
+            this.weights[i] = new Array(outputCount);
         }
         Level.#randomize(this)
     }
     static #randomize(level){
         for(let i = 0; i < level.inputs.length;i++){
-            for(let j=0; j< level.output.length; j++){
-                this.weight[i][j] = Math.random()*2-1
+            for(let j=0; j< level.outputs.length; j++){
+                level.weights[i][j] = Math.random()*2-1
             }
         }
         for(let i = 0; i< level.biases.length; i++){
-            this.biases[i] = Math.random()*2-1
+            level.biases[i] = Math.random()*2-1
         }
     }
     static feedForward(givenInputs, level){

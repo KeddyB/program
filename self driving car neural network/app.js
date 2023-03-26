@@ -17,7 +17,7 @@ if(localStorage.getItem("bestBrain")){
             localStorage.getItem("bestBrain")
         )
         if(i!=0){
-            NeuralNetwork.mutate(cars[i].brain, 0.1)
+            NeuralNetwork.mutate(cars[i].brain, 0.08)
         }
     }
 }
@@ -33,8 +33,10 @@ const traffic = [
     new Car(road.getLaneCenter(1), -700, 30, 50, "DUMMY", 2),
     new Car(road.getLaneCenter(0), -900, 30, 50, "DUMMY", 2),
     new Car(road.getLaneCenter(2), -900, 30, 50, "DUMMY", 2),
+    new Car(road.getLaneCenter(1), -1000, 30, 50, "DUMMY", 2),
     new Car(road.getLaneCenter(0), -1200, 30, 50, "DUMMY", 2),
     new Car(road.getLaneCenter(1), -1200, 30, 50, "DUMMY", 2),
+    new Car(road.getLaneCenter(1), -1350, 30, 50, "DUMMY", 2),
     new Car(road.getLaneCenter(1), -1500, 30, 50, "DUMMY", 2),
     new Car(road.getLaneCenter(2), -1500, 30, 50, "DUMMY", 2),
 ]

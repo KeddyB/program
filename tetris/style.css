@@ -4,9 +4,10 @@
 }
 body{
     text-align: center;
+    background: #fff;
 }
-#canvas{
-    width: 700px;
-    height: auto;
-    background: grey;
+#canvas1{
+    background: #fff;
+    margin-left: 10px;
+    margin-top: 10px;
 }

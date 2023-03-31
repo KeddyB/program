@@ -60,7 +60,16 @@ function SetupCanvas(){
             DrawTetromino();
         }
         else if(e.keyCode === 68){
-
+            let direction = DIRECTION.RIGHT
+            DeleteTet()
+            startX++
+            DrawTetromino();
+        }
+        else if(e.keyCode === 83){
+            let direction = DIRECTION.DOWN
+            DeleteTet()
+            startY++
+            DrawTetromino();
         }
     })
 
@@ -80,5 +89,14 @@ function DrawTetromino(){
         let coorY = coordinateArray[x][y].y
         ctx.fillStyle = curTetColor
         ctx.fillRect(coorX, coorY, 21, 21)
+    }
+}
+function DeleteTet(){
+    for(let i = 0; i < curTet.length; i++){
+        let x = curTet[i][0] + startX
+        let y = curTet[i][1] + startY
+        gameBoardArray[x][y] = 0
+        let coorX = coordinateArray[x][y].x
+        let coorY = coordinateArray[x][y].y
     }
 }

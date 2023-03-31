@@ -4,6 +4,9 @@ let gBArrayHeight = 20
 let gBArrayWidth = 12
 let startX = 4
 let startY = 0
+let score = 0
+let level = 1
+let winOrLose = 'playing'
 let coordinateArray = [...Array(gBArrayHeight)].map(e=> Array(gBArrayWidth).fill(0))
 let curTet = [[1,0],[0,1],[1,1],[2,1]]
 
@@ -13,6 +16,7 @@ let tetrominoColors = ["purple", "cyan", "blue", "yellow", "orange", "green", "r
 let curTetColor
 let gameBoardArray = [...Array(gBArrayHeight)].map(e=> Array(gBArrayWidth).fill(0))
 
+let direction
 let DIRECTION = {
     IDLE: 0,
     DOWN: 1,
@@ -50,26 +54,32 @@ function SetupCanvas(){
 
     ctx.strokeStyle = "black"
     ctx.strokeRect(8, 8, 280, 462)
-
+    
     document.addEventListener("keydown", (e)=>{
         console.log(e.keyCode)
+        direction = DIRECTION.LEFT
         if(e.keyCode === 65){
-            let direction = DIRECTION.LEFT
+            if(!HittingWall()){
             DeleteTet()
             startX--
             DrawTetromino();
+            }
         }
         else if(e.keyCode === 68){
-            let direction = DIRECTION.RIGHT
-            DeleteTet()
-            startX++
-            DrawTetromino();
+            direction = DIRECTION.RIGHT
+            if(!HittingWall()){
+                DeleteTet()
+                startX++
+                DrawTetromino();
+            }
         }
         else if(e.keyCode === 83){
-            let direction = DIRECTION.DOWN
-            DeleteTet()
-            startY++
-            DrawTetromino();
+            direction = DIRECTION.DOWN
+            if(!HittingWall()){
+                DeleteTet()
+                startY++
+                DrawTetromino();
+            }
         }
     })
 
@@ -124,4 +134,17 @@ function CreateTet(){
     let randomTet = Math.floor(Math.random() * tetrominos.length)
     curTet = tetrominos[randomTet]
     curTetColor = tetrominoColors[randomTet]
+}
+
+function HittingWall(){
+    for(let i = 0; i < curTet.length; i++){
+        let newX = curTet[i][0] + startX
+        if(newX <= 0 && direction === DIRECTION.LEFT){
+            return true
+        }
+        else if(newX >= 11 && direction === DIRECTION.RIGHT){
+            return true
+        }
+    }
+    return false
 }

@@ -98,5 +98,30 @@ function DeleteTet(){
         gameBoardArray[x][y] = 0
         let coorX = coordinateArray[x][y].x
         let coorY = coordinateArray[x][y].y
+
+        ctx.fillStyle = "white"
+        ctx.fillRect(coorX, coorY, 21, 21)
     }
+}
+function CreateTets(){
+    //push T
+    tetrominos.push([[1,0],[0,1],[1,1],[2,1]])
+    //push I
+    tetrominos.push([[0,0],[1,0],[2,0],[3,0]])
+    //push J
+    tetrominos.push([[0,0],[0,1],[1,1],[2,1]])
+    //push O
+    tetrominos.push([[0,0],[1,0],[0,1],[1,1]])
+    //push L
+    tetrominos.push([[2,0],[0,1],[1,1],[2,1]])
+    //push S
+    tetrominos.push([[1,0],[2,0],[0,1],[1,1]])
+    //push Z
+    tetrominos.push([[0,0],[1,0],[1,1],[2,1]])
+    
+}
+function CreateTet(){
+    let randomTet = Math.floor(Math.random() * tetrominos.length)
+    curTet = tetrominos[randomTet]
+    curTetColor = tetrominoColors[randomTet]
 }

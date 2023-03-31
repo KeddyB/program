@@ -1,12 +1,24 @@
 let canvas
-let ctx = canvas.getContext("2d")
+let ctx
 let gBArrayHeight = 20
 let gBArrayWidth = 12
 let startX = 4
 let startY = 0
 let coordinateArray = [...Array(gBArrayHeight)].map(e=> Array(gBArrayWidth).fill(0))
-let curTet = [[1,o],[0,1],[1,1],[2,1]]
+let curTet = [[1,0],[0,1],[1,1],[2,1]]
 
+let tetrominos = []
+let tetrominoColors = ["purple", "cyan", "blue", "yellow", "orange", "green", "red"]
+
+let curTetColor
+let gameBoardArray = [...Array(gBArrayHeight)].map(e=> Array(gBArrayWidth).fill(0))
+
+let DIRECTION = {
+    IDLE: 0,
+    DOWN: 1,
+    LEFT: 2,
+    RIGHT: 3
+}
 class Coordinates{
     constructor(x,y){
         this.x=x
@@ -28,6 +40,7 @@ function CreateCoordArray(){
 }
 function SetupCanvas(){
     canvas = document.getElementById("canvas1")
+    ctx = canvas.getContext("2d")
     canvas.width = 936
     canvas.height = 956
 
@@ -38,10 +51,34 @@ function SetupCanvas(){
     ctx.strokeStyle = "black"
     ctx.strokeRect(8, 8, 280, 462)
 
+    document.addEventListener("keydown", (e)=>{
+        console.log(e.keyCode)
+        if(e.keyCode === 65){
+            let direction = DIRECTION.LEFT
+            DeleteTet()
+            startX--
+            DrawTetromino();
+        }
+        else if(e.keyCode === 68){
+
+        }
+    })
+
+    CreateTets()
+    CreateTet()
+
     CreateCoordArray()
-    DrawTetramino()
+    DrawTetromino()
 }
 
-function DrawTetramino(){
-    
+function DrawTetromino(){
+    for(let i = 0; i < curTet.length; i++){
+        let x = curTet[i][0] + startX
+        let y = curTet[i][1] + startY
+        gameBoardArray[x][y] = 1;
+        let coorX = coordinateArray[x][y].x
+        let coorY = coordinateArray[x][y].y
+        ctx.fillStyle = curTetColor
+        ctx.fillRect(coorX, coorY, 21, 21)
+    }
 }

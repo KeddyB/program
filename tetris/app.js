@@ -16,6 +16,8 @@ let tetrominoColors = ["purple", "cyan", "blue", "yellow", "orange", "green", "r
 let curTetColor
 let gameBoardArray = [...Array(gBArrayHeight)].map(e=> Array(gBArrayWidth).fill(0))
 
+let stoppedShappedArray = [...Array(gBArrayHeight)].map(e=> Array(gBArrayWidth).fill(0))
+
 let direction
 let DIRECTION = {
     IDLE: 0,

@@ -59,31 +59,28 @@ function SetupCanvas(){
     ctx.strokeRect(8, 8, 280, 462)
     
     document.addEventListener("keydown", (e)=>{
-        console.log(e.keyCode)
-        direction = DIRECTION.LEFT
-        if(e.keyCode === 65){
-            if(!HittingWall()){
-            DeleteTet()
-            startX--
-            DrawTetromino();
-            }
-        }
-        else if(e.keyCode === 68){
-            direction = DIRECTION.RIGHT
-            if(!HittingWall()){
+        if(winOrLose != "GameOver"){
+            direction = DIRECTION.LEFT
+            if(e.keyCode === 65){
+                if(!HittingWall() && !checkForVerticalCollision()){
                 DeleteTet()
-                startX++
+                startX--
                 DrawTetromino();
+                }
+            }
+            else if(e.keyCode === 68){
+                direction = DIRECTION.RIGHT
+                if(!HittingWall() && !checkForVerticalCollision()){
+                    DeleteTet()
+                    startX++
+                    DrawTetromino();
+                }
+            }
+            else if(e.keyCode === 83){
+                moveTetDown()
             }
         }
-        else if(e.keyCode === 83){
-            direction = DIRECTION.DOWN
-            if(!HittingWall()){
-                DeleteTet()
-                startY++
-                DrawTetromino();
-            }
-        }
+            
     })
 
     CreateTets()
@@ -117,6 +114,15 @@ function SetupCanvas(){
 
     CreateCoordArray()
     DrawTetromino()
+}
+
+function moveTetDown(){
+    if(!checkForVerticalCollision()){ 
+        direction = DIRECTION.DOWN
+        DeleteTet()
+        startY++
+        DrawTetromino();
+    }
 }
 
 function DrawTetrisLogo(){
@@ -179,4 +185,42 @@ function HittingWall(){
         }
     }
     return false
+}
+function checkForVerticalCollision(){
+    let tetrominoCopy = curTet
+    let collision =false
+    for(let i = 0; i < tetrominoCopy.length; i++){
+        let square = tetrominoCopy[i];
+        let x = square[0] + startX
+        let y = square[0] + startY
+
+        if(direction === DIRECTION.DOWN){
+            y++
+        }
+        if(gameBoardArray[x][y+1]){
+            if(typeof stoppedShappedArray[x][y+1] ==="string"){
+                DeleteTet()
+                startY++
+                DrawTetromino()
+                collision = true
+                break;
+            }
+            if(y>=20){
+                collision = true
+                break;
+            }
+            if(collision){
+                if(startY <= 2){
+                    winOrLose = "GameOver"
+                    ctx.fillStyle = "white"
+                    ctx.fillRect(310, 242, 140, 30)
+                    ctx.fillStyle = "black"
+                    ctx.fillText(winOrLose, 310, 261)
+                }
+                else{
+                    for(let i = 0)
+                }
+            }
+        }
+    }
 }

@@ -127,6 +127,11 @@ function moveTetDown(){
         DrawTetromino();
     }
 }
+window.setInterval(function(){
+    if(winOrLose != "GameOver"){
+        moveTetDown()
+    }
+}, 1000)
 
 function DrawTetrisLogo(){
     ctx.drawImage(tetrisLogo, 300, 8, 161, 54)

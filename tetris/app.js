@@ -7,6 +7,7 @@ let startY = 0
 let score = 0
 let level = 1
 let winOrLose = 'playing'
+let tetrisLogo
 let coordinateArray = [...Array(gBArrayHeight)].map(e=> Array(gBArrayWidth).fill(0))
 let curTet = [[1,0],[0,1],[1,1],[2,1]]
 
@@ -88,10 +89,39 @@ function SetupCanvas(){
     CreateTets()
     CreateTet()
 
+    tetrisLogo = new Image()
+    tetrisLogo.onload = DrawTetrisLogo
+    tetrisLogo.src = "tetrislogo.jpg"
+
+    ctx.fillStyle = "black"
+    ctx.font = "21px Arial"
+    ctx.fillText("Score", 300, 98)
+    ctx.strokeRect(300, 107, 161, 24)
+
+    ctx.fillText(score.toString(), 310, 127)
+
+    ctx.fillText("LEVEL", 300, 157)
+    ctx.strokeRect(300, 171, 161, 24)
+    ctx.fillText(level.toString(), 310, 190)
+
+    ctx.fillText("WIN / LOSE", 300, 223)
+    ctx.fillText(winOrLose, 310, 261)
+    ctx.strokeRect(300, 232, 161, 95)
+    ctx.fillText("CONTROLS", 300, 354)
+    ctx.strokeRect(300, 366, 161, 104)
+    ctx.font = "19px Arial"
+    ctx.fillText("A: Move Left", 310, 388)
+    ctx.fillText("D: Move Right", 310, 413)
+    ctx.fillText("S: Move Down", 310, 438)
+    ctx.fillText("E: Rotate Left", 310, 463)
+
     CreateCoordArray()
     DrawTetromino()
 }
 
+function DrawTetrisLogo(){
+    ctx.drawImage(tetrisLogo, 300, 8, 161, 54)
+}
 function DrawTetromino(){
     for(let i = 0; i < curTet.length; i++){
         let x = curTet[i][0] + startX

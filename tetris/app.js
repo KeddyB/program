@@ -300,8 +300,8 @@ function MoveAllRowsDown(a, b){
                 nextSquare = square
                 gameBoardArray[x][y2] = 1
                 stoppedShappedArray[x][y2]= square
-                let coorX = coordinateArray[i][y].x
-                let coorY = coordinateArray[i][y2].y
+                let coorX = coordinateArray[x][y].x
+                let coorY = coordinateArray[x][y2].y
 
                 ctx.fillStyle = nextSquare
                 ctx.fillRect(coorX, coorY, 21, 21)
@@ -309,9 +309,19 @@ function MoveAllRowsDown(a, b){
                 square = 0
                 gameBoardArray[x][i] = 0
                 stoppedShappedArray[x][i] = 0
-                coorX = coordinateArray[i][y2].x
-                coorY = coordinateArray[i][y2].y
+                coorX = coordinateArray[x][i].x
+                coorY = coordinateArray[x][i].y
+                ctx.fillStyle = nextSquare
+                ctx.fillRect(coorX, coorY, 21, 21)
             }
         }
+    }
+}
+function Rotate(){
+    let newRotation = new Array()
+    let tetrominoCopy = curTet
+    let curTetrominoBU
+    for(leti = 0; i < tetrominoCopy.length; i++){
+        curTetrominoBU
     }
 }

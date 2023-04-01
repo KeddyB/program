@@ -236,7 +236,38 @@ function checkForVerticalCollision(){
     }
 }
 function CheckForCompletedRows(){
+    let rowsToDelete = 0;
+    let startOfDeletion = 0
+    for(let y = 0; y<gBArrayHeight; y++){
+        let completed = true
+        for(let x = 0; x < gBArrayWidth ; x++){
+            let square = stoppedShappedArray[x][y]
+            if(square === 0 || (typeof square === "undefined")){
+                completed = falsebreak
+            }
+        }
+        if(completed){
+            if(startOfDeletion === 0) startOfDeletion = y
+            rowsToDelete++
+            for(let i = 0; i < gBArrayWidth; i++){
+                stoppedShappedArray[i][y] = 0
+                gameBoardArray[i][y]= 0
+                let coorX = coordinateArray[i][y].x
+                let coorY = coordinateArray[i][y].y
 
+                ctx.fillStyle = "white"
+                ctx.fillRect(coorX, coorY, 21, 21)
+            }
+        }
+        if(rowsToDelete > 0){
+            score += 10;
+            ctx.fillStyle = "white"
+            ctx.fillRect(310, 109, 140, 19)
+            ctx.fillStyle ="black"
+            ctx.fillText(score.toString(), 310, 127)
+            MoveAllRowsDown(rowsToDelete, startOfDeletion)
+        }
+    }
 }
 function CheckForHorizontalCollision(){
     let tetrominoCopy  = curTet
@@ -258,4 +289,29 @@ function CheckForHorizontalCollision(){
         }
     }
     return collision;
+}
+function MoveAllRowsDown(a, b){
+    for(var i = b-1; i >= 0; i--){
+        for(var x = 0; x <gBArrayWidth; x++){
+            var y2 = i + a
+            var square = stoppedShappedArray[x][i]
+            var nextSquare = stoppedShappedArray[x][y2]
+            if(typeof square === "string"){
+                nextSquare = square
+                gameBoardArray[x][y2] = 1
+                stoppedShappedArray[x][y2]= square
+                let coorX = coordinateArray[i][y].x
+                let coorY = coordinateArray[i][y2].y
+
+                ctx.fillStyle = nextSquare
+                ctx.fillRect(coorX, coorY, 21, 21)
+
+                square = 0
+                gameBoardArray[x][i] = 0
+                stoppedShappedArray[x][i] = 0
+                coorX = coordinateArray[i][y2].x
+                coorY = coordinateArray[i][y2].y
+            }
+        }
+    }
 }

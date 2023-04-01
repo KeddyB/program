@@ -196,16 +196,16 @@ function HittingWall(){
 }
 function checkForVerticalCollision(){
     let tetrominoCopy = curTet
-    let collision =false
+    let collision = false
     for(let i = 0; i < tetrominoCopy.length; i++){
         let square = tetrominoCopy[i];
         let x = square[0] + startX
-        let y = square[0] + startY
+        let y = square[1] + startY
 
         if(direction === DIRECTION.DOWN){
             y++
         }
-        if(gameBoardArray[x][y+1]){
+        if(gameBoardArray[x][y+1] === 1){
             if(typeof stoppedShappedArray[x][y+1] ==="string"){
                 DeleteTet()
                 startY++

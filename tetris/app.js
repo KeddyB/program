@@ -218,7 +218,13 @@ function checkForVerticalCollision(){
                     ctx.fillText(winOrLose, 310, 261)
                 }
                 else{
-                    for(let i = 0)
+                    for(let i = 0; i < tetrominoCopy.length; i++){
+                        let square = tetrominoCopy[i]
+                        let x = square[0] + startX
+                        let y = square[0] + startY
+                        stoppedShappedArray[x][y] = curTetColor
+                    }
+                    CheckForCompletedRows()
                 }
             }
         }

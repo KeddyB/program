@@ -79,6 +79,9 @@ function SetupCanvas(){
             else if(e.keyCode === 83){
                 moveTetDown()
             }
+            else if(e.keyCode === 69){
+                Rotate()
+            }
         }
             
     })
@@ -321,7 +324,34 @@ function Rotate(){
     let newRotation = new Array()
     let tetrominoCopy = curTet
     let curTetrominoBU
-    for(leti = 0; i < tetrominoCopy.length; i++){
-        curTetrominoBU
+    for(let i = 0; i < tetrominoCopy.length; i++){
+        curTetrominoBU = [...curTet]
+        let x = tetrominoCopy[i][0]
+        let y = tetrominoCopy[i][1]
+        let newX = (GetLastSquareX() - y)
+        let newY = x
+        newRotation.push([newX, newY])
     }
+    DeleteTet()
+    try{
+        curTet = newRotation
+        DrawTetromino()
+    }
+    catch(e){
+        if(e instanceof TypeError){
+            curTet = curTetrominoBU
+            DeleteTet()
+            DrawTetromino()
+        }
+    }
+}
+function GetLastSquareX(){
+    let lastX = 0
+    for(let i = 0; i < curTet.length; i++){
+        let square = curTet[i]
+        if(square[0] > lastX){
+            lastX = square[0]
+        }
+    }
+    return lastX
 }

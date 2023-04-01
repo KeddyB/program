@@ -221,12 +221,41 @@ function checkForVerticalCollision(){
                     for(let i = 0; i < tetrominoCopy.length; i++){
                         let square = tetrominoCopy[i]
                         let x = square[0] + startX
-                        let y = square[0] + startY
+                        let y = square[1] + startY
                         stoppedShappedArray[x][y] = curTetColor
                     }
                     CheckForCompletedRows()
+                    CreateTet()
+                    direction = DIRECTION.IDLE
+                    startX = 4
+                    startY = 0
+                    DrawTetromino()
                 }
             }
         }
     }
+}
+function CheckForCompletedRows(){
+
+}
+function CheckForHorizontalCollision(){
+    let tetrominoCopy  = curTet
+    let collision = true
+    for(let i = 0; i < tetrominoCopy.length; i++){
+        let square = tetrominoCopy[i]
+        let x = square[0] + startX
+        let y = square[1] + startY
+        
+        if(direction === DIRECTION.LEFT){
+            x--
+        }else if(direction === DIRECTION.LEFT){
+            x++
+        }
+        var stoppedShapeVal = stoppedShappedArray[x][y]
+        if(typeof stoppedShapeVal == "string"){
+            collision = true
+            break
+        }
+    }
+    return collision;
 }

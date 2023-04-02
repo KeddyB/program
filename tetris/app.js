@@ -279,7 +279,7 @@ function CheckForCompletedRows(){
 }
 function CheckForHorizontalCollision(){
     let tetrominoCopy  = curTet
-    let collision = true
+    let collision = false
     for(let i = 0; i < tetrominoCopy.length; i++){
         let square = tetrominoCopy[i]
         let x = square[0] + startX
@@ -291,7 +291,7 @@ function CheckForHorizontalCollision(){
             x++
         }
         var stoppedShapeVal = stoppedShappedArray[x][y]
-        if(typeof stoppedShapeVal == "string"){
+        if(typeof stoppedShapeVal === "string"){
             collision = true
             break
         }

@@ -10,6 +10,7 @@ let winOrLose = 'playing'
 let tetrisLogo
 let coordinateArray = [...Array(gBArrayHeight)].map(e=> Array(gBArrayWidth).fill(0))
 let curTet = [[1,0],[0,1],[1,1],[2,1]]
+let collision = false
 
 let tetrominos = []
 let tetrominoColors = ["purple", "cyan", "blue", "yellow", "orange", "green", "red"]
@@ -62,7 +63,7 @@ function SetupCanvas(){
         if(winOrLose != "GameOver"){
             direction = DIRECTION.LEFT
             if(e.keyCode === 65){
-                if(!HittingWall() && !checkForVerticalCollision()){
+                if(!HittingWall() && !CheckForHorizontalCollision()){
                 DeleteTet()
                 startX--
                 DrawTetromino();
@@ -70,7 +71,7 @@ function SetupCanvas(){
             }
             else if(e.keyCode === 68){
                 direction = DIRECTION.RIGHT
-                if(!HittingWall() && !checkForVerticalCollision()){
+                if(!HittingWall() && !CheckForHorizontalCollision()){
                     DeleteTet()
                     startX++
                     DrawTetromino();
@@ -140,8 +141,8 @@ function DrawTetromino(){
     }
 }
 function moveTetDown(){
-    if(!checkForVerticalCollision()){ 
-        direction = DIRECTION.DOWN
+    direction = DIRECTION.DOWN
+    if(!checkForVerticalCollision()){  
         DeleteTet()
         startY++
         DrawTetromino();
@@ -206,7 +207,7 @@ function checkForVerticalCollision(){
             y++
         }
         if(gameBoardArray[x][y+1] === 1){
-            if(typeof stoppedShappedArray[x][y+1] ==="string"){
+            if(typeof stoppedShappedArray[x][y+1] === "string"){
                 DeleteTet()
                 startY++
                 DrawTetromino()
@@ -287,7 +288,7 @@ function CheckForHorizontalCollision(){
         
         if(direction === DIRECTION.LEFT){
             x--
-        }else if(direction === DIRECTION.LEFT){
+        }else if(direction === DIRECTION.RIGHT){
             x++
         }
         var stoppedShapeVal = stoppedShappedArray[x][y]

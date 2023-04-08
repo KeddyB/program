@@ -119,14 +119,6 @@ function SetupCanvas(){
     DrawTetromino()
 }
 
-function moveTetDown(){
-    if(!checkForVerticalCollision()){ 
-        direction = DIRECTION.DOWN
-        DeleteTet()
-        startY++
-        DrawTetromino();
-    }
-}
 window.setInterval(function(){
     if(winOrLose != "GameOver"){
         moveTetDown()
@@ -145,6 +137,14 @@ function DrawTetromino(){
         let coorY = coordinateArray[x][y].y
         ctx.fillStyle = curTetColor
         ctx.fillRect(coorX, coorY, 21, 21)
+    }
+}
+function moveTetDown(){
+    if(!checkForVerticalCollision()){ 
+        direction = DIRECTION.DOWN
+        DeleteTet()
+        startY++
+        DrawTetromino();
     }
 }
 function DeleteTet(){

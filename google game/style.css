@@ -11,5 +11,6 @@ body{
    transform: translate(-50%, -50%);
 }
 canvas{
-   background-color: aqua;
+   border-radius: 5px;
+   border: 1px solid black;
 }

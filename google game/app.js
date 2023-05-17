@@ -1,23 +1,28 @@
-canvas = document.querySelector(".canvas")
-ctx = canvas.getContext("2d")
+let x = 120
+let y= 105
 
-canvas.width = 800
-canvas.height = 200
+window.onload = function(){
+   canvas = document.querySelector(".canvas")
+   ctx = canvas.getContext("2d")
 
-var char = {
-   x: 120,
-   y: 105
+   canvas.width = 800
+   canvas.height = 200
+   ctx.fillRect(0,150, canvas.width, 100)
+
+   function moveChar(){
+      document.addEventListener("keydown", (e)=>{
+         if(e.key == "ArrowUp" || e.key == "Spaace"){
+            y -= 10
+            console.log(e.key)
+         }
+      })
+   }
+   function update(){
+      requestAnimationFrame(update)
+      ctx.fillStyle = "red"
+      ctx.fillRect(x, y, 30,50)
+      moveChar()
+   }
+   update()
 }
 
-ctx.fillRect(0,150, canvas.width, 100)
-
-ctx.fillStyle = "red"
-ctx.fillRect(char.x,char.y, 30,50)
-
-function moveChar(){
-   document.addEventListener(onkeydown, (e)=>{
-
-      char.y += 2
-   })
-   requestAnimationFrame(moveChar)
-}

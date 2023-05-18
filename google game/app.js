@@ -35,6 +35,9 @@ window.onload = function(){
       if(block1.x == 0){
          block1.x = 750
       }
+      if(block2.x == 0){
+         block2.x = 800
+      }
       requestAnimationFrame(update)
    }
       

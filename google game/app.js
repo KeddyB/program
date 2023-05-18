@@ -1,5 +1,16 @@
-let x = 120
-let y = 105
+let char = {
+   x: 120,
+   y: 105
+}
+class Block{
+   constructor(x, y = 115){
+      this.x = x
+      this.y = y
+   }
+}
+
+let block1 = new Block(750)
+let block2 = new Block(800)
 
 window.onload = function(){
    canvas = document.querySelector(".canvas")
@@ -8,23 +19,37 @@ window.onload = function(){
    canvas.height = 200
 
    function update(){
+      ctx.clearRect(0, 0, canvas.width, canvas.height)
       ctx.fillStyle = "black"
       ctx.fillRect(0,150, canvas.width, 100)
 
       ctx.fillStyle = "red"
-      ctx.fillRect(x, y, 30,50)
+      ctx.fillRect(char.x, char.y, 30,50)
       
+      ctx.fillStyle = "green"
+      ctx.fillRect(block1.x, block1.y, 20, 40)
+      ctx.fillRect(block2.x, block2.y, 20, 40)
+      block1.x -= .5
+      block2.x -= .5
+      if(block1.x == 0){
+         block1.x = 750
+      }
       requestAnimationFrame(update)
    }
       
-   setInterval(update, 100)
+   setInterval(update, 1000)
 }
+
 document.addEventListener("keyup", (e)=>{
+   let up = false
    switch(e.key){
       case "ArrowUp":
-         y -= 40
+         char.y -= 50
+         up = true
          console.log(e.code)
       break;
+   }if (up == true){
+
    }
 })
 

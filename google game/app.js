@@ -8,26 +8,23 @@ window.onload = function(){
    canvas.height = 200
 
    function update(){
-      requestAnimationFrame(update)
-      
-      ctx.clearRect(0, 0, canvas.width, canvas.height)
       ctx.fillStyle = "black"
       ctx.fillRect(0,150, canvas.width, 100)
 
       ctx.fillStyle = "red"
       ctx.fillRect(x, y, 30,50)
       
-      moveChar()
+      requestAnimationFrame(update)
    }
-   function moveChar(){
-      document.addEventListener("keydown", (e)=>{
-         if(e.key == "ArrowUp" || e.key == "Spaace"){
-            y -= 10
-            console.log(e.key)
-         }
-      })
       
-   }
    setInterval(update, 100)
 }
+document.addEventListener("keyup", (e)=>{
+   switch(e.key){
+      case "ArrowUp":
+         y -= 40
+         console.log(e.code)
+      break;
+   }
+})
 

@@ -1,6 +1,7 @@
 let char = {
    x: 120,
-   y: 105
+   y: 105,
+   velocity: 0
 }
 class Block{
    constructor(x, y = 115){
@@ -44,12 +45,10 @@ document.addEventListener("keyup", (e)=>{
    let up = false
    switch(e.key){
       case "ArrowUp":
-         char.y -= 50
+         char.y -= char.velocity
          up = true
          console.log(e.code)
       break;
-   }if (up == true){
-
    }
 })
 

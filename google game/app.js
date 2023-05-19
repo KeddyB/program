@@ -1,7 +1,7 @@
 let char = {
    x: 120,
    y: 105,
-   velocity: 0
+   velocity: 4
 }
 class Block{
    constructor(x, y = 115){

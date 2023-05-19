@@ -20,6 +20,7 @@ window.onload = function(){
    canvas.height = 200
 
    function update(){
+      requestAnimationFrame(update)
       ctx.clearRect(0, 0, canvas.width, canvas.height)
       ctx.fillStyle = "black"
       ctx.fillRect(0,150, canvas.width, 100)
@@ -30,18 +31,16 @@ window.onload = function(){
       ctx.fillStyle = "green"
       ctx.fillRect(block1.x, block1.y, 20, 40)
       ctx.fillRect(block2.x, block2.y, 20, 40)
-      block1.x -= .5
-      block2.x -= .5
+      block1.x -= 1
+      block2.x -= 1
       if(block1.x == 0){
          block1.x = 750
       }
       if(block2.x == 0){
          block2.x = 800
       }
-      requestAnimationFrame(update)
    }
-      
-   setInterval(update, 1000)
+   update()
 }
 
 document.addEventListener("keyup", (e)=>{

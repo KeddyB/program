@@ -1,15 +1,11 @@
-let gravity = 0.6
-let jumpStrength = 12
-let jumpForce = 0
-let isJumping = false
-
+let gravity = 10
+let velocity = 2
 let char = {
    x: 120,
    y: 105,
-   velocity: 4
 }
 class Block{
-   constructor(x, y = 115){
+   constructor(x, y = 120){
       this.x = x
       this.y = y
    }
@@ -27,15 +23,6 @@ window.onload = function(){
    function update(){
       requestAnimationFrame(update)
       ctx.clearRect(0, 0, canvas.width, canvas.height)
-      
-      if(isJumping){
-         jumpForce+=gravity
-         char.y += jumpForce
-         if(char.y >= canvas.width - 20){
-            char.y = canvas.width - 20
-            isJumping = false
-         }
-      }
       ctx.fillStyle = "black"
       ctx.fillRect(0,150, canvas.width, 100)
 
@@ -43,26 +30,21 @@ window.onload = function(){
       ctx.fillRect(char.x, char.y, 30,50)
       
       ctx.fillStyle = "green"
-      ctx.fillRect(block1.x, block1.y, 20, 40)
-      ctx.fillRect(block2.x, block2.y, 20, 40)
-      // block1.x -= 1
-      // block2.x -= 1
-      // if(block1.x == 0){
-      //    block1.x = 750
-      // }
-      // if(block2.x == 0){
-      //    block2.x = 800
-      // }
+      ctx.fillRect(block1.x, block1.y, 20, 35)
+      ctx.fillRect(block2.x, block2.y, 20, 35)
+      block1.x -= 1
+      block2.x -= 1
+      if(char.y != 65){
+         char.y -= velocity 
+      }else if(char.y >= 65){
+         char.y = 105
+      }
+      if(block1.x == 0){
+         block1.x = 750
+      }
+      if(block2.x == 0){
+         block2.x = 800
+      }
    }
    update()
 }
-
-document.addEventListener("keyup", (e)=>{
-   if(e.keyCode == "ArrowUp" || e.keyCode == "Space"){
-      isJumping = true
-      jumpForce = -jumpStrength
-   }
-   if(e.keyCode == "ArrowDown" || e.keyCode == "Space" && jumpForce < -4){
-      jumpForce = -4
-   }
-})

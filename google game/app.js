@@ -4,6 +4,7 @@ let char = {
    x: 120,
    y: 105,
 }
+let isJumping
 class Block{
    constructor(x, y = 120){
       this.x = x
@@ -37,11 +38,8 @@ function update(){
    ctx.fillRect(block2.x, block2.y, 20, 35)
    block1.x -= 3
    block2.x -= 3
-   if(char.y >= 65){
+   if(char.y >= 65 && !isJumping){
       char.y -= velocity
-   }
-   if(char.y <= 65){
-      char.y += velocity
    }
    if(block1.x <= 0){
       block1.x = 800

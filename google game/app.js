@@ -22,14 +22,6 @@ window.onload = function(){
 
    update()
 }
-window.addEventListener("keydown", move)
-isJumping = false
-function move(e){
-   requestAnimationFrame(move)
-   if(char.y >= 65 &&e.key == "ArrowUp"){
-      char.y -= velocity
-   }
-}
 
 function update(){
    requestAnimationFrame(update)
@@ -45,8 +37,11 @@ function update(){
    ctx.fillRect(block2.x, block2.y, 20, 35)
    block1.x -= 3
    block2.x -= 3
+   if(char.y >= 65){
+      char.y -= velocity
+   }
    if(char.y <= 65){
-      char.y = 105
+      char.y += velocity
    }
    if(block1.x <= 0){
       block1.x = 800

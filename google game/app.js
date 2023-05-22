@@ -79,6 +79,7 @@ class Player{
       ctx.fillRect(this.x, this.y, this.width, this.height)
    }
    update(){
+      this.draw()
       document.addEventListener("keydown", (e)=>{
          if(e.key == "ArrowUp"){
             this.y--
@@ -87,18 +88,23 @@ class Player{
    }
 }
 class Obstacle{
-   constructor(){
+   constructor(width, height, x, y = 800){
       this.height = height
       this.width = width
-      this.x
-      this.y
+      this.x = x
+      this.y = y
    }
    draw(){
       ctx.fillStyle = "blue"
       ctx.fillRect(this.x, this.y, this.width, this.height)
    }
+   update(){
+      this.draw()
+   }
 }
 
+const obs = new Obstacle(30, 30, 105, 300)
+obs.update()
+
 const player = new Player(30, 30, 105, 140)
-player.draw()
 player.update()

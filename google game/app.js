@@ -52,6 +52,11 @@ canvas = document.querySelector(".canvas")
 ctx = canvas.getContext("2d")
 canvas.width = 800
 canvas.height = 200
+ctx.beginPath()
+ctx.setLineDash([50, 10])
+ctx.moveTo(0, 50)
+ctx.lineTo(800, 150)
+ctx.stroke()
 class Player{
    constructor(){
       this.height = height
@@ -73,6 +78,10 @@ class Obstacle{
       this.width = width
       this.x
       this.y
+   }
+   draw(){
+      ctx.fillStyle = "blue"
+      ctx.fillRect(this.x, this.y, this.width, this.height)
    }
 }
 

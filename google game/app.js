@@ -48,6 +48,10 @@
 //       block2.x = 800
 //    }
 // }
+canvas = document.querySelector(".canvas")
+ctx = canvas.getContext("2d")
+canvas.width = 800
+canvas.height = 200
 class Player{
    constructor(){
       this.height = height
@@ -55,7 +59,11 @@ class Player{
       this.x = x
       this.y = y
    }
-   animate(){
+   draw(){
+      ctx.fillStyle = "red"
+      ctx.fillRect(this.x, this.y, this.width, this.height)
+   }
+   update(){
       
    }
 }
@@ -67,3 +75,6 @@ class Obstacle{
       this.y
    }
 }
+
+const player = new Player()
+player.draw()

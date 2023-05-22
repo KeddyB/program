@@ -68,7 +68,7 @@ function drawDashedLine(pattern){
 let t = 170 
 drawDashedLine([15,3,3,3])
 class Player{
-   constructor(){
+   constructor(width,height, x, y){
       this.height = height
       this.width = width
       this.x = x
@@ -79,7 +79,11 @@ class Player{
       ctx.fillRect(this.x, this.y, this.width, this.height)
    }
    update(){
-      
+      document.addEventListener("keydown", (e)=>{
+         if(e.key == "ArrowUp"){
+            this.y--
+         }
+      })
    }
 }
 class Obstacle{
@@ -95,5 +99,6 @@ class Obstacle{
    }
 }
 
-const player = new Player()
+const player = new Player(30, 30, 105, 140)
 player.draw()
+player.update()
